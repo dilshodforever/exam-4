@@ -1,0 +1,836 @@
+basePath: /
+definitions:
+  game.Achievement:
+    properties:
+      description:
+        type: string
+      earned_at:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+    type: object
+  game.AchievementsResponse:
+    properties:
+      achievements:
+        items:
+          $ref: '#/definitions/game.Achievement'
+        type: array
+    type: object
+  game.Answer:
+    properties:
+      question_id:
+        type: string
+      selected_option:
+        type: integer
+    type: object
+  game.Challenge:
+    properties:
+      description:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      questions:
+        items:
+          $ref: '#/definitions/game.Question'
+        type: array
+      type:
+        type: string
+    type: object
+  game.CompleteLevelRequest:
+    properties:
+      level_id:
+        type: string
+      userid:
+        type: string
+      xpearned:
+        type: integer
+    type: object
+  game.CompleteLevelResponse:
+    properties:
+      message:
+        type: string
+      new_level_unlocked:
+        type: string
+      xp_earned:
+        type: integer
+    type: object
+  game.GetLevelsResponse:
+    properties:
+      levels:
+        items:
+          $ref: '#/definitions/game.Level'
+        type: array
+    type: object
+  game.LeaderboardEntry:
+    properties:
+      level_id:
+        type: string
+      rank:
+        type: integer
+      user_id:
+        type: string
+      user_xp:
+        type: integer
+    type: object
+  game.LeaderboardResponse:
+    properties:
+      leaderboard:
+        items:
+          $ref: '#/definitions/game.LeaderboardEntry'
+        type: array
+    type: object
+  game.Level:
+    properties:
+      challenges:
+        items:
+          $ref: '#/definitions/game.Challenge'
+        type: array
+      cid:
+        type: integer
+      completed:
+        type: boolean
+      description:
+        type: string
+      levelid:
+        type: string
+      name:
+        type: string
+      required_xp:
+        type: integer
+    type: object
+  game.Question:
+    properties:
+      correct_option:
+        type: integer
+      id:
+        type: string
+      options:
+        items:
+          type: string
+        type: array
+      text:
+        type: string
+    type: object
+  game.StartLevelRequest:
+    properties:
+      level_id:
+        type: string
+      userid:
+        type: string
+    type: object
+  game.StartLevelResponse:
+    properties:
+      first_challenge_id:
+        type: string
+      message:
+        type: string
+    type: object
+  game.SubmitChallengeRequest:
+    properties:
+      answers:
+        items:
+          $ref: '#/definitions/game.Answer'
+        type: array
+      challenge_id:
+        type: string
+      userid:
+        type: string
+    type: object
+  game.SubmitChallengeResponse:
+    properties:
+      correct_answers:
+        type: integer
+      feedback:
+        type: string
+      total_questions:
+        type: integer
+      xp_earned:
+        type: integer
+    type: object
+  learning.AistorageRespons:
+    properties:
+      request_text:
+        type: string
+      response_text:
+        type: string
+      userid:
+        type: string
+    type: object
+  learning.AistorageResponse:
+    properties:
+      response:
+        items:
+          $ref: '#/definitions/learning.AistorageRespons'
+        type: array
+    type: object
+  learning.Challenge:
+    properties:
+      description:
+        type: string
+      difficulty:
+        type: string
+      id:
+        type: string
+      title:
+        type: string
+      xp_reward:
+        type: integer
+    type: object
+  learning.CompleteResourceRequest:
+    properties:
+      user_id:
+        type: string
+    type: object
+  learning.CompleteResourceResponse:
+    properties:
+      message:
+        type: string
+      xp_earned:
+        type: integer
+    type: object
+  learning.CompleteTopicRequest:
+    properties:
+      topic_id:
+        type: string
+      userid:
+        type: string
+    type: object
+  learning.CompleteTopicResponse:
+    properties:
+      message:
+        type: string
+      xp_earned:
+        type: integer
+    type: object
+  learning.Content:
+    properties:
+      data:
+        type: string
+      type:
+        type: string
+    type: object
+  learning.GetChallengesResponse:
+    properties:
+      challenges:
+        items:
+          $ref: '#/definitions/learning.Challenge'
+        type: array
+    type: object
+  learning.GetRecommendationsResponse:
+    properties:
+      recommendations:
+        items:
+          $ref: '#/definitions/learning.Topics'
+        type: array
+    type: object
+  learning.GetResourcesResponse:
+    properties:
+      resources:
+        items:
+          $ref: '#/definitions/learning.Resource'
+        type: array
+    type: object
+  learning.GetTopicsResponse:
+    properties:
+      topics:
+        items:
+          $ref: '#/definitions/learning.Topic'
+        type: array
+    type: object
+  learning.ProgressResponse:
+    properties:
+      overall_progress:
+        type: number
+      quizzes_completed:
+        type: integer
+      resources_completed:
+        type: integer
+      topics_completed:
+        type: integer
+      total_quizzes:
+        type: integer
+      total_resources:
+        type: integer
+      total_topics:
+        type: integer
+    type: object
+  learning.Quiz:
+    properties:
+      id:
+        type: string
+      questions:
+        items:
+          $ref: '#/definitions/learning.QuizQuestion'
+        type: array
+      topic_id:
+        type: string
+    type: object
+  learning.QuizAnswer:
+    properties:
+      question_id:
+        type: string
+      selected_option:
+        type: integer
+    type: object
+  learning.QuizQuestion:
+    properties:
+      correct_option:
+        type: integer
+      id:
+        type: string
+      options:
+        items:
+          type: string
+        type: array
+      text:
+        type: string
+    type: object
+  learning.Resource:
+    properties:
+      id:
+        type: string
+      title:
+        type: string
+      type:
+        $ref: '#/definitions/learning.ResourceType'
+      url:
+        type: string
+    type: object
+  learning.ResourceType:
+    enum:
+    - 0
+    - 1
+    type: integer
+    x-enum-varnames:
+    - ResourceType_ARTICLE
+    - ResourceType_INTERACTIVE
+  learning.SubmitChallengeSolutionRequest:
+    properties:
+      solution:
+        type: string
+      userid:
+        type: string
+    type: object
+  learning.SubmitChallengeSolutionResponse:
+    properties:
+      message:
+        type: string
+    type: object
+  learning.SubmitQuizRequest:
+    properties:
+      answers:
+        items:
+          $ref: '#/definitions/learning.QuizAnswer'
+        type: array
+      quiz_id:
+        type: string
+      userid:
+        type: string
+    type: object
+  learning.SubmitQuizResponse:
+    properties:
+      correct_answers:
+        items:
+          $ref: '#/definitions/learning.QuizAnswer'
+        type: array
+      feedback:
+        type: string
+      score:
+        type: integer
+      total_questions:
+        type: integer
+      xp_earned:
+        type: integer
+    type: object
+  learning.Topic:
+    properties:
+      content:
+        items:
+          $ref: '#/definitions/learning.Content'
+        type: array
+      description:
+        type: string
+      difficulty:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      quiz:
+        items:
+          $ref: '#/definitions/learning.Quiz'
+        type: array
+      xpearned:
+        type: integer
+    type: object
+  learning.Topics:
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+      reason:
+        type: string
+      type:
+        type: string
+    type: object
+host: localhost:8080
+info:
+  contact: {}
+  description: Auth service API documentation
+  title: api gat way
+  version: "1.0"
+paths:
+  /game/complete_level:
+    post:
+      consumes:
+      - application/json
+      description: Complete an ongoing game level
+      parameters:
+      - description: Complete level request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/game.CompleteLevelRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Level completed successfully
+          schema:
+            $ref: '#/definitions/game.CompleteLevelResponse'
+        "500":
+          description: Error while completing level
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: Complete Level
+      tags:
+      - Game
+  /game/get_achievements:
+    get:
+      consumes:
+      - application/json
+      description: Retrieve achievements based on criteria
+      parameters:
+      - description: Player ID
+        in: query
+        name: player_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Achievements list
+          schema:
+            $ref: '#/definitions/game.AchievementsResponse'
+        "400":
+          description: Missing required query parameter
+          schema:
+            type: string
+        "500":
+          description: Error while fetching achievements
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: Get Achievements
+      tags:
+      - Game
+  /game/get_challenge:
+    get:
+      consumes:
+      - application/json
+      description: Retrieve details of a challenge by ID
+      parameters:
+      - description: Challenge ID
+        in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Challenge details
+          schema:
+            $ref: '#/definitions/game.Challenge'
+        "400":
+          description: Missing required query parameter
+          schema:
+            type: string
+        "500":
+          description: Error while fetching challenge
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: Get Challenge
+      tags:
+      - Game
+  /game/get_leaderboard:
+    get:
+      consumes:
+      - application/json
+      description: Retrieve leaderboard based on criteria
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Leaderboard details
+          schema:
+            $ref: '#/definitions/game.LeaderboardResponse'
+        "400":
+          description: Missing required query parameter
+          schema:
+            type: string
+        "500":
+          description: Error while fetching leaderboard
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: Get Leaderboard
+      tags:
+      - Game
+  /game/get_levels:
+    get:
+      consumes:
+      - application/json
+      description: Get details of the game levels
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Game levels details
+          schema:
+            $ref: '#/definitions/game.GetLevelsResponse'
+        "400":
+          description: Missing required query parameter
+          schema:
+            type: string
+        "500":
+          description: Error while fetching levels
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: Get Levels
+      tags:
+      - Game
+  /game/start_level:
+    post:
+      consumes:
+      - application/json
+      description: Start a new game level
+      parameters:
+      - description: Start level request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/game.StartLevelRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Level started successfully
+          schema:
+            $ref: '#/definitions/game.StartLevelResponse'
+        "500":
+          description: Error while starting level
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: Start Level
+      tags:
+      - Game
+  /game/submit_challenge:
+    post:
+      consumes:
+      - application/json
+      description: Submit a response to a challenge
+      parameters:
+      - description: Submit challenge request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/game.SubmitChallengeRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Challenge submitted successfully
+          schema:
+            $ref: '#/definitions/game.SubmitChallengeResponse'
+        "500":
+          description: Error while submitting challenge
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: Submit Challenge
+      tags:
+      - Game
+  /learning/ai/storage:
+    get:
+      consumes:
+      - application/json
+      description: Get AI storage information
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: AI storage retrieved successfully
+          schema:
+            $ref: '#/definitions/learning.AistorageResponse'
+        "400":
+          description: Bad request
+          schema:
+            type: string
+      summary: Get storage from IA
+      tags:
+      - Learning
+  /learning/challenge/solution/submit:
+    post:
+      consumes:
+      - application/json
+      description: Submit a solution for a challenge
+      parameters:
+      - description: Submit Challenge Solution Request
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/learning.SubmitChallengeSolutionRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Solution submitted successfully
+          schema:
+            $ref: '#/definitions/learning.SubmitChallengeSolutionResponse'
+        "400":
+          description: Bad request
+          schema:
+            type: string
+      summary: Submit solution for a challenge
+      tags:
+      - Learning
+  /learning/challenges:
+    get:
+      consumes:
+      - application/json
+      description: Retrieves all challenges available
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Challenges retrieved successfully
+          schema:
+            $ref: '#/definitions/learning.GetChallengesResponse'
+        "500":
+          description: Internal server error
+          schema:
+            type: string
+      summary: Get all challenges
+      tags:
+      - Learning
+  /learning/progress:
+    get:
+      consumes:
+      - application/json
+      description: Retrieves progress details for a specific user
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Progress details
+          schema:
+            $ref: '#/definitions/learning.ProgressResponse'
+        "400":
+          description: Bad request
+          schema:
+            type: string
+      summary: Get progress for a user
+      tags:
+      - Learning
+  /learning/quiz/submit:
+    post:
+      consumes:
+      - application/json
+      description: Submit answers for a quiz
+      parameters:
+      - description: Submit Quiz Request
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/learning.SubmitQuizRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Quiz submitted successfully
+          schema:
+            $ref: '#/definitions/learning.SubmitQuizResponse'
+        "400":
+          description: Bad request
+          schema:
+            type: string
+      summary: Submit a quiz
+      tags:
+      - Learning
+  /learning/recommendations:
+    get:
+      consumes:
+      - application/json
+      description: Retrieves topic recommendations
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Recommendations retrieved successfully
+          schema:
+            $ref: '#/definitions/learning.GetRecommendationsResponse'
+        "500":
+          description: Internal server error
+          schema:
+            type: string
+      summary: Get recommendations
+      tags:
+      - Learning
+  /learning/resource/complete:
+    post:
+      consumes:
+      - application/json
+      description: Mark a resource as completed for a specific user
+      parameters:
+      - description: Complete Resource Request
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/learning.CompleteResourceRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Resource completed successfully
+          schema:
+            $ref: '#/definitions/learning.CompleteResourceResponse'
+        "400":
+          description: Bad request
+          schema:
+            type: string
+      summary: Complete a resource
+      tags:
+      - Learning
+  /learning/resources:
+    get:
+      consumes:
+      - application/json
+      description: Retrieves all resources available
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Resources retrieved successfully
+          schema:
+            $ref: '#/definitions/learning.GetResourcesResponse'
+        "500":
+          description: Internal server error
+          schema:
+            type: string
+      summary: Get all resources
+      tags:
+      - Learning
+  /learning/topic/{topic_id}:
+    get:
+      consumes:
+      - application/json
+      description: Get details of a specific topic
+      parameters:
+      - description: Topic ID
+        in: path
+        name: topic_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Topic details
+          schema:
+            $ref: '#/definitions/learning.Topic'
+        "404":
+          description: Topic not found
+          schema:
+            type: string
+      summary: Get a topic by ID
+      tags:
+      - Learning
+  /learning/topic/complete:
+    post:
+      consumes:
+      - application/json
+      description: Mark a topic as completed for a specific user
+      parameters:
+      - description: Complete Topic Request
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/learning.CompleteTopicRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Topic completed successfully
+          schema:
+            $ref: '#/definitions/learning.CompleteTopicResponse'
+        "400":
+          description: Bad request
+          schema:
+            type: string
+        "404":
+          description: Topic not found
+          schema:
+            type: string
+      summary: Complete a topic
+      tags:
+      - Learning
+  /learning/topics:
+    get:
+      consumes:
+      - application/json
+      description: Retrieves all topics available
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Topics retrieved successfully
+          schema:
+            $ref: '#/definitions/learning.GetTopicsResponse'
+        "500":
+          description: Internal server error
+          schema:
+            type: string
+      summary: Get all topics
+      tags:
+      - Learning
+securityDefinitions:
+  BearerAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"

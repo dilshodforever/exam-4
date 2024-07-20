@@ -1,0 +1,16 @@
+version: '3.9'
+
+services:
+  learning-service:
+    container_name: learning-service
+    build: .
+    ports:
+      - "8088:8088"
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:
+    external: true
+    name: global-network
+    driver: bridge

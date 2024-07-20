@@ -1,0 +1,221 @@
+syntax = "proto3";
+
+package learning;
+
+option go_package = "genprotos/learning";
+
+// Learning Service definition
+service LearningService {
+    rpc GetTopics(GetTopicsRequest) returns (GetTopicsResponse);
+    rpc GetTopic(GetTopicRequest) returns (Topic);
+    rpc CompleteTopic(CompleteTopicRequest) returns (CompleteTopicResponse);
+    rpc GetQuiz(GetQuizRequest) returns (Quiz);
+    rpc SubmitQuiz(SubmitQuizRequest) returns (SubmitQuizResponse);
+    rpc GetResources(GetResourcesRequest) returns (GetResourcesResponse);
+    rpc CompleteResource(CompleteResourceRequest) returns (CompleteResourceResponse);
+    rpc GetProgress(GetProgressRequest) returns (ProgressResponse);
+    rpc GetRecommendations(GetRecommendationsRequest) returns (GetRecommendationsResponse);
+    rpc SubmitFeedback(SubmitFeedbackRequest) returns (SubmitFeedbackResponse);
+    rpc GetChallenges(GetChallengesRequest) returns (GetChallengesResponse);
+    rpc SubmitChallengeSolution(SubmitChallengeSolutionRequest) returns (SubmitChallengeSolutionResponse);
+    rpc GetIAstorage(AistorageRequest) returns (AistorageResponse);
+}
+
+message AistorageRequest{
+    string userid=1;
+}
+message AistorageResponse{
+    repeated AistorageRespons response=1;
+}
+message AistorageRespons{
+    string userid=1;
+    string request_text=2;
+    string response_text=3;
+}
+
+message GetTopicsRequest {}
+
+message Topic {
+    string id = 1;
+    string name = 2;
+    string description = 3;
+    string difficulty = 4;
+    repeated Content content = 5;
+    repeated Quiz quiz = 6;
+    int32 xpearned=7;
+}
+
+message Content {
+    string type = 1;
+    string data = 2;
+}
+
+message Quiz {
+    string id = 1;
+    string topic_id = 2;
+    repeated QuizQuestion questions = 3;
+}
+
+message QuizQuestion {
+    string id = 1;
+    string text = 2;
+    repeated string options = 3;
+    int32 correct_option=4;
+}
+
+message GetTopicsResponse {
+    repeated Topic topics = 1;
+}
+
+message GetTopicRequest {
+    string topic_id = 1;
+}
+
+message CompleteTopicRequest {
+    string topic_id = 1;
+    string userid=2;
+}
+
+message CompleteTopicResponse {
+    string message = 1;
+    int32 xp_earned = 2;
+}
+
+message GetQuizRequest {
+    string quiz_id = 1;
+}
+
+message SubmitQuizRequest {
+    string quiz_id = 1;
+    string userid=2;
+    repeated QuizAnswer answers = 3;
+}
+message Update {
+    string user_id = 1;
+    int32 xps=2;
+}
+
+message QuizAnswer {
+    string question_id = 1;
+    int32 selected_option = 2;
+}
+
+message SubmitQuizResponse {
+    int32 score = 1;
+    int32 total_questions = 2;
+    repeated QuizAnswer correct_answers = 3;
+    int32 xp_earned = 4;
+    string feedback = 5;
+}
+
+message GetResourcesRequest {}
+
+message Resource {
+    string id = 1;
+    string title = 2;
+    ResourceType type = 3;
+    string url = 4;
+}
+
+enum ResourceType {
+    ARTICLE = 0;
+    INTERACTIVE = 1;
+}
+
+message GetResourcesResponse {
+    repeated Resource resources = 1;
+}
+
+message CompleteResourceRequest {
+    string user_id = 1;
+}
+
+message CompleteResourceResponse {
+    string message = 1;
+    int32 xp_earned = 2;
+}
+
+message GetProgressRequest {
+    string userid = 1;
+}
+
+message ProgressResponse {
+    int32 topics_completed = 1;
+    int32 total_topics = 2;
+    int32 quizzes_completed = 3;
+    int32 total_quizzes = 4;
+    int32 resources_completed = 5;
+    int32 total_resources = 6;
+    float overall_progress = 7;
+}
+
+message GetRecommendationsRequest {
+}
+
+message GetRecommendationsResponse {
+    repeated Topics recommendations = 1;
+}
+
+message Topics {
+    string type = 1;
+    string id = 2;
+    string name = 3;
+    string reason = 4;
+  }
+  
+message TopicRecommendation {
+    string id = 1;
+    string name = 2;
+    string reason = 3;
+}
+
+message ResourceRecommendation {
+    string id = 1;
+    string title = 2;
+    string reason = 3;
+}
+
+message SubmitFeedbackRequest {
+    string userid=1;
+    string topic_id = 2;
+    int32 rating = 3;
+    string comment = 4;
+}
+
+message SubmitFeedbackResponse {
+    string message = 1;
+    int32 xp_earned = 2;
+}
+
+message GetChallengesRequest {}
+
+message Challenge {
+    string id = 1;
+    string title = 2;
+    string description = 3;
+    string difficulty = 4;
+    int32 xp_reward = 5;
+}
+
+message GetChallengesResponse {
+    repeated Challenge challenges = 1;
+}
+
+message SubmitChallengeSolutionRequest {
+    string userid = 2;
+    string solution = 3;
+}
+
+message SubmitChallengeSolutionResponse {
+    string message = 1;
+}
+
+
+
+message CalculateCompleteds {
+    int32 topics_completed = 1;
+    int32 quizzes_completed = 2;
+    int32 resources_completed = 3;
+    string userid =4;
+}
+
