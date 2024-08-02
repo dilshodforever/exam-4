@@ -6,7 +6,6 @@
         "contact": {},
         "version": "1.0"
     },
-    "host": "localhost:8080",
     "basePath": "/",
     "paths": {
         "/game/complete_level": {
@@ -156,7 +155,7 @@
             "get": {
                 "security": [
                     {
-                        "BearerAuth": []
+                        "BearerAuthz": []
                     }
                 ],
                 "description": "Retrieve leaderboard based on criteria",
