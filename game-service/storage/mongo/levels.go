@@ -2,6 +2,7 @@ package postgres
 
 import (
 	"context"
+	"fmt"
 	"log"
 
 	"github.com/dilshodforever/4-oyimtixon-game-service/genprotos/game"
@@ -36,6 +37,7 @@ func (g *GameStorage) GetLevels(req *game.GetLevelsRequest) (*game.GetLevelsResp
 }
 
 func (g *GameStorage) StartLevel(req *game.StartLevelRequest) (*game.StartLevelResponse, error) {
+	fmt.Println(11111111111)
 	coll := g.db.Collection("user_levels")
 	_, err := coll.InsertOne(context.Background(), bson.D{
 		{Key: "user_id", Value: req.Userid},

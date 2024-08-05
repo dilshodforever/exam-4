@@ -496,7 +496,7 @@ paths:
           schema:
             type: string
       security:
-      - BearerAuth: []
+      - BearerAuthz: []
       summary: Get Leaderboard
       tags:
       - Game

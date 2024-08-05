@@ -162,7 +162,7 @@ const docTemplate = `{
             "get": {
                 "security": [
                     {
-                        "BearerAuth": []
+                        "BearerAuthz": []
                     }
                 ],
                 "description": "Retrieve leaderboard based on criteria",
