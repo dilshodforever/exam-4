@@ -2,6 +2,7 @@ package service
 
 import (
 	"context"
+	"fmt"
 	"log"
 
 	pb "github.com/dilshodforever/4-oyimtixon-game-service/genprotos/game"
@@ -27,6 +28,7 @@ func (s *GameService) GetLevels(ctx context.Context, req *pb.GetLevelsRequest) (
 
 func (s *GameService) StartLevel(ctx context.Context, req *pb.StartLevelRequest) (*pb.StartLevelResponse, error) {
 	resp, err := s.stg.Game().StartLevel(req)
+	fmt.Println(11111111111)
 	if err != nil {
 		log.Print(err)
 	}
@@ -57,7 +59,6 @@ func (s *GameService) SubmitChallenge(ctx context.Context, req *pb.SubmitChallen
 	return resp, err
 }
 
-
 func (s *GameService) GetLeaderboard(ctx context.Context, req *pb.GetLeaderboardRequest) (*pb.LeaderboardResponse, error) {
 	resp, err := s.stg.Game().GetLeaderboard(req)
 	if err != nil {
@@ -73,4 +74,3 @@ func (s *GameService) GetAchievements(ctx context.Context, req *pb.GetAchievemen
 	}
 	return resp, err
 }
-

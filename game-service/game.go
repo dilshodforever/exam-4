@@ -20,7 +20,7 @@ func main() {
 	if err != nil {
 		log.Fatal("Error while connection on tcp: ", err.Error())
 	}
-	brokers := []string{"kafka:9092"}
+	brokers := []string{"10.10.0.175:9092"}
 
 	kcm := kafka.NewKafkaConsumerManager()
 	appService := service.NewGameService(db)
