@@ -1310,7 +1310,7 @@ var SwaggerInfo = &swag.Spec{
 	BasePath:         "/",
 	Schemes:          []string{},
 	Title:            "api gat way",
-	Description:      "Auth service API documentation",
+	Description:      "Dilshod",
 	InfoInstanceName: "swagger",
 	SwaggerTemplate:  docTemplate,
 	LeftDelim:        "{{",

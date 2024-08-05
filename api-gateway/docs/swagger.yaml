@@ -380,7 +380,7 @@ definitions:
     type: object
 info:
   contact: {}
-  description: Auth service API documentation
+  description: Dilshod
   title: api gat way
   version: "1.0"
 paths:
